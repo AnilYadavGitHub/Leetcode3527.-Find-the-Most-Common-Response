@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string findCommonResponse(vector<vector<string>>& responses) {
+
+        
+     map<string , int>mp;
+        for(auto i : responses){
+            set<string>st;
+            for(auto j : i){
+                st.insert(j);
+            }
+
+            for(auto i : st){
+                mp[i]++;
+            }
+        }
+
+
+        vector<pair<string , int>>pq(mp.begin() , mp.end());
+        
+        
+       sort(pq.begin() , pq.end() , [&](pair<string , int> &a , pair<string , int> &b){
+           
+           return (a.second == b.second)?a.first < b.first : a.second > b.second;
+       });
+
+
+        return pq[0].first;
+        
+        
+    }
+};
